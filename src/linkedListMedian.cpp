@@ -20,5 +20,28 @@ struct node {
 };
 
 int linkedListMedian(struct node *head) {
+	if (head != NULL)                   //when there are no elements in nexted list
+	{
+		struct node *p, *q;
+		p = head;
+		if (p->next == NULL)        //when there is a single element in linkedlist
+			return((p->num));
+		else
+		{
+			q = head;
+			while (q->next->next)
+			{
+				p = p->next;
+				q = q->next;
+				q = q->next;
+				if (!q || !q->next)
+					break;
+			}
+			if (!q->next)				//when there are odd no. of elemets
+				return((p->num));
+			else						//whwn there are even no. of elements
+				return(((p->num) + (p->next->num)) / 2);
+		}
+	}
 	return -1;
 }
